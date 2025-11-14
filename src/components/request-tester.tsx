@@ -16,8 +16,9 @@ const createCodes = (apiKey = '<API_KEY>') => ({
   -H "Authorization: Bearer ${apiKey}" \
   -H "Content-Type: application/json" \
   -d '{"name": "My Agent", "description": "My Agent Description", "model": "gpt-4o"}'`,
-  'delete-agent': `curl -X DELETE ${SITE_URL}/api/agents/1 \
-  -H "Authorization: Bearer ${apiKey}"`,
+  'delete-agent': `curl -X DELETE ${SITE_URL}/api/agents \
+  -H "Authorization: Bearer ${apiKey}" \
+  -d '{"agentId": "1"}'`,
 })
 
 export function RequestTester() {
