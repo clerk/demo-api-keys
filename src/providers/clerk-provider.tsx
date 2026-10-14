@@ -1,5 +1,5 @@
 import { ClerkProvider as ClerkNextJSProvider } from '@clerk/nextjs'
-import { shadcn } from '@clerk/themes'
+import { shadcn } from '@clerk/ui/themes'
 
 type ClerkProviderProps = React.ComponentProps<typeof ClerkNextJSProvider>
 
@@ -14,8 +14,8 @@ export function ClerkProvider({
       appearance={{
         theme: shadcn,
         ...appearance,
-        layout: {
-          ...appearance.layout,
+        options: {
+          ...appearance.options,
           helpPageUrl: 'https://clerk.com/docs',
           privacyPageUrl: 'https://clerk.com/legal/privacy',
           termsPageUrl: 'https://clerk.com/legal/terms',

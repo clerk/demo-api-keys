@@ -31,17 +31,17 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
-      <html
-        className={cn(geistSans.variable, jetBrainsMono.variable)}
-        lang="en"
-        suppressHydrationWarning
-      >
-        <body className="antialiased">
+    <html
+      className={cn(geistSans.variable, jetBrainsMono.variable)}
+      lang="en"
+      suppressHydrationWarning
+    >
+      <body className="antialiased">
+        <ClerkProvider>
           <Toaster position="top-right" />
           {children}
-        </body>
-      </html>
-    </ClerkProvider>
+        </ClerkProvider>
+      </body>
+    </html>
   )
 }
