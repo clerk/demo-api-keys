@@ -1,21 +1,21 @@
 import Link from 'next/link'
 import { BotIcon } from 'lucide-react'
-import { SignedIn, SignedOut } from '@clerk/nextjs'
+import { Show } from '@clerk/nextjs'
 import { Button } from '@/components/ui/button'
 
 function CTAButton() {
   return (
     <>
-      <SignedIn>
+      <Show when="signed-in">
         <Button asChild>
           <Link href="/dashboard">Continue to Dashboard →</Link>
         </Button>
-      </SignedIn>
-      <SignedOut>
+      </Show>
+      <Show when="signed-out">
         <Button asChild>
           <Link href="/sign-in">Get Started</Link>
         </Button>
-      </SignedOut>
+      </Show>
     </>
   )
 }
