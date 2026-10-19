@@ -1,5 +1,4 @@
 import { auth } from '@clerk/nextjs/server'
-import type { TokenType } from '@clerk/backend/internal'
 
 const errors = {
   unauthorized: {
@@ -16,7 +15,11 @@ type CheckAuthResponse =
   | {
       success: true
       error?: null
-      data: { tokenType: TokenType; userId: string | null; orgId: string }
+      data: {
+        tokenType: 'api_key' | 'session_token'
+        userId: string | null
+        orgId: string
+      }
     }
   | {
       success: false

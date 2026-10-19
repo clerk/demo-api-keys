@@ -6,12 +6,15 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar'
 import { OrganizationSwitcher, UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
 
-export default function DashboardLayout({
+export default async function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  await auth.protect()
+
   return (
     <SidebarProvider>
       <AppSidebar />

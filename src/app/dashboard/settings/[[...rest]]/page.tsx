@@ -1,6 +1,9 @@
+import { auth } from '@clerk/nextjs/server'
 import { OrganizationProfile } from '@clerk/nextjs'
 
-export default function SettingsPage() {
+export default async function SettingsPage() {
+  await auth.protect()
+
   return (
     <div className="flex items-center justify-center">
       <OrganizationProfile
