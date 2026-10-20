@@ -7,8 +7,9 @@ import {
 } from '@/components/ui/sidebar'
 import { OrganizationSwitcher, UserButton } from '@clerk/nextjs'
 import { auth } from '@clerk/nextjs/server'
+import { Suspense } from 'react'
 
-export default async function DashboardLayout({
+async function ProtectedDashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -36,5 +37,17 @@ export default async function DashboardLayout({
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
       </SidebarInset>
     </SidebarProvider>
+  )
+}
+
+export default function DashboardLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <Suspense fallback={null}>
+      <ProtectedDashboardLayout>{children}</ProtectedDashboardLayout>
+    </Suspense>
   )
 }

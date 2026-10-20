@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { BotIcon } from 'lucide-react'
 import { Show } from '@clerk/nextjs'
+import { Suspense } from 'react'
 import { Button } from '@/components/ui/button'
 
 function CTAButton() {
@@ -32,7 +33,9 @@ export default function Home() {
           Configure and manage your AI agents with ease.
         </p>
       </div>
-      <CTAButton />
+      <Suspense fallback={null}>
+        <CTAButton />
+      </Suspense>
     </div>
   )
 }
