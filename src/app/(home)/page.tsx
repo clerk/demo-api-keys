@@ -33,7 +33,7 @@ export default function Home() {
           Configure and manage your AI agents with ease.
         </p>
       </div>
-      <Suspense fallback={null}>
+      <Suspense>
         <CTAButton />
       </Suspense>
     </div>

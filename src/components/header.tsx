@@ -8,7 +8,7 @@ export function Header() {
   return (
     <header className="flex h-16 shrink-0 items-center justify-end">
       <div className="flex items-center gap-2 px-4">
-        <Suspense fallback={null}>
+        <Suspense>
           <Show when="signed-out">
             <Button asChild className="border border-primary" variant="outline">
               <SignInButton />

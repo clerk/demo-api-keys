@@ -46,7 +46,7 @@ export default function DashboardLayout({
   children: React.ReactNode
 }>) {
   return (
-    <Suspense fallback={null}>
+    <Suspense>
       <ProtectedDashboardLayout>{children}</ProtectedDashboardLayout>
     </Suspense>
   )
