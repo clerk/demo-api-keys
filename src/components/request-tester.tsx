@@ -1,32 +1,34 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useMemo, useState, useSyncExternalStore } from 'react'
 import { CodeTabs } from '@/components/animate-ui/components/animate/code-tabs'
 import { Input } from '@/components/ui/input'
 
-const SITE_URL =
-  process.env.NODE_ENV === 'development'
-    ? 'http://localhost:3000'
-    : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+const subscribe = () => () => {
+  // The origin never changes, so there's nothing to unsubscribe from
+}
+const getOrigin = () => window.location.origin
+const getServerOrigin = () => 'http://localhost:3000'
 
-const createCodes = (apiKey = '<API_KEY>') => ({
-  'get-agents': `curl -X GET ${SITE_URL}/api/agents \
+const createCodes = (siteUrl: string, apiKey = '<API_KEY>') => ({
+  'get-agents': `curl -X GET ${siteUrl}/api/agents \
   -H "Authorization: Bearer ${apiKey}"`,
-  'create-agent': `curl -X POST ${SITE_URL}/api/agents \
+  'create-agent': `curl -X POST ${siteUrl}/api/agents \
   -H "Authorization: Bearer ${apiKey}" \
   -H "Content-Type: application/json" \
   -d '{"name": "My Agent", "description": "My Agent Description", "model": "gpt-4o"}'`,
-  'delete-agent': `curl -X DELETE ${SITE_URL}/api/agents \
+  'delete-agent': `curl -X DELETE ${siteUrl}/api/agents \
   -H "Authorization: Bearer ${apiKey}" \
   -d '{"agentId": "1"}'`,
 })
 
 export function RequestTester() {
   const [apiKey, setApiKey] = useState('')
+  const siteUrl = useSyncExternalStore(subscribe, getOrigin, getServerOrigin)
 
   const codes = useMemo(
-    () => createCodes(apiKey.trim() || '<API_KEY>'),
-    [apiKey]
+    () => createCodes(siteUrl, apiKey.trim() || '<API_KEY>'),
+    [siteUrl, apiKey]
   )
 
   return (

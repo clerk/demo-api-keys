@@ -171,6 +171,14 @@ Clerk Dashboard → Configure → Organization Management → Roles & Permission
 
 to your test users.
 
+Then navigate to:
+
+```
+Clerk Dashboard → Configure → API keys
+```
+
+- Select **Enable API keys** and turn on **Enable Organization API keys**
+
 ---
 
 
