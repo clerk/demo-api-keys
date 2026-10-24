@@ -1,3 +1,6 @@
+import { OrganizationSwitcher, UserButton } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
+import { Suspense } from 'react'
 import { AppSidebar } from '@/components/sidebar/app-sidebar'
 import { Separator } from '@/components/ui/separator'
 import {
@@ -5,17 +8,22 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from '@/components/ui/sidebar'
-import { OrganizationSwitcher, UserButton } from '@clerk/nextjs'
-import { auth } from '@clerk/nextjs/server'
-import { Suspense } from 'react'
 
-async function ProtectedDashboardLayout({
+async function Protected({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
   await auth.protect()
 
+  return children
+}
+
+export default function DashboardLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -34,20 +42,12 @@ async function ProtectedDashboardLayout({
             <UserButton />
           </div>
         </header>
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <Suspense>
+            <Protected>{children}</Protected>
+          </Suspense>
+        </div>
       </SidebarInset>
     </SidebarProvider>
-  )
-}
-
-export default function DashboardLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
-  return (
-    <Suspense>
-      <ProtectedDashboardLayout>{children}</ProtectedDashboardLayout>
-    </Suspense>
   )
 }

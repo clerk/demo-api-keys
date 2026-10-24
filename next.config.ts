@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
   },
   turbopack: {
     debugIds: true,
+    rules: {
+      '*.css': {
+        loaders: ['@tailwindcss/turbopack'],
+        as: '*.css',
+      },
+    },
   },
   devIndicators: {
     position: 'bottom-right',
