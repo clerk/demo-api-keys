@@ -56,6 +56,22 @@
           }
         }
       }
+    },
+    {
+      "includes": [
+        "src/components/animate-ui/**",
+        "src/hooks/use-controlled-state.tsx",
+        "src/lib/get-strict-context.tsx"
+      ],
+      "assist": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      },
+      "linter": {
+        "enabled": false
+      }
     }
   ]
 }
