@@ -174,7 +174,7 @@ to your test users.
 Then navigate to:
 
 ```
-Clerk Dashboard → Configure → API keys
+Clerk Dashboard → Configure → Developers → API keys
 ```
 
 - Select **Enable API keys** and turn on **Enable Organization API keys**
